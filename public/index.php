@@ -32,6 +32,10 @@ $clientes = [
 ];
 
 
+
+$app->get('/', function ()  {
+    return "<a href='/clientes' >click here</a>";
+});
 $app->get('/clientes', function () use ($app, $clientes) {
     return $app->json($clientes);
 });
