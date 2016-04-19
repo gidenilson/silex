@@ -3,41 +3,55 @@
 
 require_once __DIR__ . '/../bootstrap.php';
 
-$clientes = [
-    [
-        "id" => 1,
-        "name" => "João da Silva",
-        "email" => "joaodasilva@yahoo.com",
-        "cpf" => "43983891560"
-    ],
-    [
-        "id" => 2,
-        "name" => "Carlos Roberto",
-        "email" => "carlosrob@gmail.com",
-        "cpf" => "01951824482"
-    ],
-    [
-        "id" => 3,
-        "name" => "Daniela Freitas",
-        "email" => "danifrts@hotmail.com",
-        "cpf" => "25215118388"
-    ],
-    [
-        "id" => 4,
-        "name" => "Elias Gomes",
-        "email" => "eligomes@live.com",
-        "cpf" => "62389049680"
-    ]
+use Code\Sistema\Entities\Cliente;
+use Code\Sistema\Mappers\ClienteMapper;
+use Code\Sistema\Services\ClienteService;
 
-];
+use Code\Sistema\Entities\Produto;
+use Code\Sistema\Mappers\ProdutoMapper;
+use Code\Sistema\Services\ProdutoService;
 
+$app['clienteService'] = function () {
+    $client = new Cliente();
+    $mapper = new ClienteMapper();
 
+    return new ClienteService($client, $mapper);
+};
 
-$app->get('/', function ()  {
-    return "<a href='/clientes' >click here</a>";
+$app['produtoService'] = function () {
+    $produto = new Produto();
+    $mapper = new ProdutoMapper();
+
+    return new ProdutoService($produto, $mapper);
+};
+
+$app->get('/', function () {
+    return "<a href='/cliente' >mostra cliente</a>"
+    . "<br/><a href='/produto' >mostra produto</a>";
 });
-$app->get('/clientes', function () use ($app, $clientes) {
-    return $app->json($clientes);
+
+$app->get('/cliente', function () use ($app) {
+    $dados = [
+        "nome" => "Marcelo da Silva",
+        "email" => "marcelodasilva@marceloemail.com"
+    ];
+
+    $clienteService = $app['clienteService'];
+    $result = $clienteService->insert($dados);
+
+    return $app->json($result);
+});
+$app->get('/produto', function () use ($app) {
+    $dados = [
+        "nome" => "Sapato",
+        "descricao" => "Sapato social masculino",
+        "valor" => "249.00",
+    ];
+
+    $produtoService = $app['produtoService'];
+    $result = $produtoService->insert($dados);
+
+    return $app->json($result);
 });
 
 $app->run();
