@@ -5,9 +5,19 @@ namespace Code\Sistema\Entities;
 
 class Cliente
 {
+    private $id;
     private $nome;
     private $email;
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+        
     /**
      * @return mixed
      */

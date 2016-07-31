@@ -35,4 +35,12 @@ class ClienteService
 
         return $this->mapper->insert($clientEntity);
     }
+    
+    public function find($id) {
+        return $this->mapper->find($id);
+    }
+    
+    public function fetchAll(){
+        return $this->mapper->fetchAll();
+    }
 }

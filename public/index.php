@@ -11,29 +11,34 @@ use Code\Sistema\Entities\Produto;
 use Code\Sistema\Mappers\ProdutoMapper;
 use Code\Sistema\Services\ProdutoService;
 
-$app['clienteService'] = function () {
+use Doctrine\DBAL\Connection;
+use Symfony\Component\HttpFoundation\Request;
+
+$app['clienteService'] = function () use ($db) {
     $client = new Cliente();
-    $mapper = new ClienteMapper();
+    $mapper = new ClienteMapper($db);
 
     return new ClienteService($client, $mapper);
 };
 
-$app['produtoService'] = function () {
+$app['produtoService'] = function () use ($db) {
     $produto = new Produto();
-    $mapper = new ProdutoMapper();
+    $mapper = new ProdutoMapper($db);
 
     return new ProdutoService($produto, $mapper);
 };
 
 $app->get('/', function () {
-    return "<a href='/cliente' >mostra cliente</a>"
-    . "<br/><a href='/produto' >mostra produto</a>";
+    return "<a href='api/cliente' >mostra clientes</a>"
+    . "<br/><a href='api/produto' >mostra produtos</a>";
 });
 
-$app->get('/cliente', function () use ($app) {
+///// cliente //////
+// Insert
+$app->post('api/cliente', function (Request $request) use ($app) {
     $dados = [
-        "nome" => "Marcelo da Silva",
-        "email" => "marcelodasilva@marceloemail.com"
+        "nome" => $request->get("nome"),
+        "email" => $request->get("email")
     ];
 
     $clienteService = $app['clienteService'];
@@ -41,11 +46,32 @@ $app->get('/cliente', function () use ($app) {
 
     return $app->json($result);
 });
-$app->get('/produto', function () use ($app) {
+
+// mostra um
+$app->get('api/cliente/{id}', function ($id) use ($app) {
+
+    $clienteService = $app['clienteService'];
+    $result = $clienteService->find($id);
+
+    return $app->json($result);
+});
+
+// mostra todos
+$app->get('api/cliente', function () use ($app) {
+
+    $clienteService = $app['clienteService'];
+    $result = $clienteService->fetchAll();
+
+    return $app->json($result);
+});
+
+///// produto//////
+// Insert
+$app->post('api/produto', function (Request $request) use ($app) {
     $dados = [
-        "nome" => "Sapato",
-        "descricao" => "Sapato social masculino",
-        "valor" => "249.00",
+        "nome" => $request->get("nome"),
+        "descricao" => $request->get("descricao"),
+        "valor" => $request->get("valor")
     ];
 
     $produtoService = $app['produtoService'];
@@ -54,4 +80,21 @@ $app->get('/produto', function () use ($app) {
     return $app->json($result);
 });
 
+// mostra um
+$app->get('api/produto/{id}', function ($id) use ($app) {
+
+    $produtoService = $app['produtoService'];
+    $result = $produtoService->find($id);
+
+    return $app->json($result);
+});
+
+// mostra todos
+$app->get('api/produto', function () use ($app) {
+
+    $produtoService = $app['produtoService'];
+    $result = $produtoService->fetchAll();
+
+    return $app->json($result);
+});
 $app->run();

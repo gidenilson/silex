@@ -40,4 +40,12 @@ class ProdutoService
 
         return $this->mapper->insert($produtoEntity);
     }
+
+    public function find($id) {
+        return $this->mapper->find($id);
+    }
+
+    public function fetchAll(){
+        return $this->mapper->fetchAll();
+    }
 }
