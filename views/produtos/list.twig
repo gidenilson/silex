@@ -1,0 +1,59 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+<section class="row">
+    <div class="panel panel-produto">
+        <div class="panel-heading clearfix">
+            <span class="panel-title fontsize-plus">Produtos</span>
+            <a href="#" id="btnCriar" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> criar novo</a>
+        </div>
+
+        <form action="{{ path('produto/insert') }}"  method="post" id="form-edit-entity" class="form-inline form-edit-entity produto-bg-color-light">
+            <input type="hidden" name="_method" value="post" >
+            <input type="hidden" id="form-id" name="id" >
+            <div class="form-group">
+                <!--label for="nome">Nome</label-->
+                <input type="text" class="form-control" id="form-nome" name="nome"  placeholder="Nome">
+            </div>
+            <div class="form-group">
+                <!--label for="email">Email</label-->
+                <input type="text" class="form-control" id="form-descricao" name="descricao" placeholder="Descrição">
+            </div>
+            <div class="form-group">
+                <!--label for="email">Email</label-->
+                <input type="text" class="form-control" id="form-valor" name="valor" placeholder="Valor">
+            </div>
+            <button type="submit" id="btnSalvar" class="btn btn-default" disabled="true">Salvar</button>
+            <button type="button" id="btnCancelar" class="btn btn-default">Cancelar</button>
+        </form>
+
+        <div class="panel-body">
+            <table class="table table-condensed">
+                <thead class="produto-color-color">
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+               {% for produto in produtos %}
+                   <tr data-id="{{ produto.id }}">
+                    <td><span data-field="id">{{ produto.id }}</span></td>
+                    <td><span data-field="nome">{{ produto.nome }}</span></td>
+                    <td><span data-field="descricao">{{ produto.descricao }}</span></td>
+                    <td>R$ <span data-field="valor">{{ produto.valor  }}</span></td>
+                    <td>
+                        <a href="javascript:app.edit({{ produto.id }})" class="btn btn-edit"><span class="glyphicon glyphicon-pencil"></span> editar</a>
+                        <a href="javascript:app.delete({{ produto.id }})" class="btn btn-delete"><span class="glyphicon glyphicon-trash"></span> excluir</a>
+                    </td>
+                </tr>
+               {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section><!-- listagem de produtos -->
+{% endblock %}

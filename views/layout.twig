@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Silex</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ app.request.basepath }}/css/style.css">
+
+</head>
+<body>
+<main class="container">
+    <div class="page-header">
+        <h1>Silex
+            <small>exercício CRUD</small>
+        </h1>
+    </div>
+{% block home %}
+    <nav class="navbar navbar-default fontsize-plus">
+        <div class="container-fluid">
+
+            <ul class="nav navbar-nav">
+                <li><a class="cliente-color" href="{{ path("cliente/fetchall") }}" ><span class="glyphicon glyphicon-user"></span> Clientes</a></li>
+                <li><a class="produto-color" href="{{ path("produto/fetchall") }}"><span class="glyphicon glyphicon-blackboard"></span> Produtos</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path("index") }}"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+            </ul>
+
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    {% block content %}
+    conteúdo
+    {% endblock %}
+{% endblock %}
+</main>
+<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+
+<script src="{{ app.request.basepath }}/js/app.js"></script>
+
+</body>
+</html>

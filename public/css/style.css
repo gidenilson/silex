@@ -1,0 +1,81 @@
+.fontsize-plus{
+    font-size: 1.5em;
+}
+
+/**
+ * produto
+ */
+.produto-color {
+    color: #ff9900 !important;
+}
+
+.produto-bg-color {
+    background-color: #ff9900 !important;
+}
+.produto-bg-color-light{
+    background-color: rgba(255, 103, 8, 0.45) !important;
+}
+.panel-produto {
+    border-color: #ff9900;
+}
+.panel-produto>.panel-heading{
+    color: white;
+    background-color: #ff9900;
+}
+.panel-produto>.panel-heading>.btn{
+    float: right;
+}
+.panel-produto>.form-edit-entity{
+    border-bottom: 1px solid #ff9900;
+
+}
+
+/**
+ * cliente
+ */
+.cliente-color {
+    color: #00b8e6 !important;
+}
+.cliente-bg-color {
+    background-color: #02b8e6 !important;
+}
+.cliente-bg-color-light{
+    background-color: rgba(2, 184, 230, 0.51) !important;
+}
+.panel-cliente {
+    border-color: #00b8e6;
+}
+.panel-cliente>.panel-heading{
+    color: white;
+    background-color: #00b8e6;
+}
+.panel-cliente>.panel-heading>.btn{
+    float: right;
+}
+.panel-cliente>.form-edit-entity{
+    border-bottom: 1px solid #00b8e6;
+
+
+}
+
+
+/**
+* geral
+*/
+
+.form-edit-entity {
+    padding: 20px;
+    display: none;
+}
+
+
+.editing{
+    background-color: #e8e4b2;
+}
+.btn-edit{
+
+    color: #1f9d06;
+}
+.btn-delete {
+    color: #e44833;
+}

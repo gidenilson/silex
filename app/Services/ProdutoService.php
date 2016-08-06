@@ -48,4 +48,11 @@ class ProdutoService
     public function fetchAll(){
         return $this->mapper->fetchAll();
     }
+    public function update($id, $dados){
+        return $this->mapper->update($id, $dados);
+    }
+    
+    public function delete($id){
+        return $this->mapper->delete($id);
+    }    
 }

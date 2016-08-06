@@ -1,0 +1,19 @@
+{% extends "layout.twig" %}
+
+{% block home %}
+    <div class="jumbotron">
+        <h1>CRUD<small> Projeto fase 3</small></h1>
+
+        <h2>Requisitos:</h2>
+        <ul>
+            <li><h4>Completar CRUD</h4></li>
+            <li><h4>Interface HTML</h4></li>
+            <li><h4>Utilizar Twig</h4></li>
+            <li><h4>Link com UrlGenerator</h4></li>
+            <li><h4>Twitter Bootstrap</h4></li>
+
+        </ul>
+
+        <p class="text-center"><a class="btn btn-primary btn-lg" href="{{ path('cliente/fetchall') }}" role="button"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></p>
+    </div>
+{% endblock %}

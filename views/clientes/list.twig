@@ -1,0 +1,53 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+<section class="row">
+    <div class="panel panel-cliente">
+        <div class="panel-heading clearfix">
+            <span class="panel-title fontsize-plus">Clientes</span>
+            <a href="#" id="btnCriar" class="btn btn-default" ><span class="glyphicon glyphicon-plus"></span> criar novo</a>
+        </div>
+
+        <form action="{{ path('cliente/insert') }}"  method="post" id="form-edit-entity" class="form-inline form-edit-entity cliente-bg-color-light">
+            <input type="hidden" name="_method" value="post" >
+            <input type="hidden" id="form-id" name="id" >
+            <div class="form-group">
+                <!--label for="nome">Nome</label-->
+                <input type="text" class="form-control" id="form-nome" name="nome"  placeholder="Nome">
+            </div>
+            <div class="form-group">
+                <!--label for="email">Email</label-->
+                <input type="email" class="form-control" id="form-email" name="email" placeholder="E-mail">
+            </div>
+            <button type="submit" id="btnSalvar" class="btn btn-default" disabled="true">Salvar</button>
+            <button type="button" id="btnCancelar" class="btn btn-default">Cancelar</button>
+        </form>
+
+         <div class="panel-body">
+            <table class="table table-condensed">
+                <thead class="cliente-color">
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+               {% for cliente in clientes %}
+                <tr data-id="{{ cliente.id }}">
+                    <td><span data-field="id">{{ cliente.id }}</span></td>
+                    <td><span data-field="nome">{{ cliente.nome }}</span></td>
+                    <td><span data-field="email">{{ cliente.email }}</span></td>
+                    <td>
+                        <a href="javascript:app.edit({{ cliente.id }})" class="btn btn-edit"><span class="glyphicon glyphicon-pencil"></span> editar</a>
+                        <a href="javascript:app.delete({{ cliente.id }})" class="btn btn-delete"><span class="glyphicon glyphicon-trash"></span> excluir</a>
+                    </td>
+                </tr>
+               {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section><!-- listagem de clientes -->
+{% endblock %}
