@@ -25,4 +25,5 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
+
 Request::enableHttpMethodParameterOverride();

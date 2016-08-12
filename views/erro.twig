@@ -1,0 +1,12 @@
+{% extends "layout.twig" %}
+
+{% block home %}
+    <div class="jumbotron">
+        <h1>Erro<small> Ocorreu um erro!</small></h1>
+
+        <h2>Tente novamente:</h2>
+
+
+        <p class="text-center"><a class="btn btn-primary btn-lg" href="{{ path('cliente/fetchall') }}" role="button"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></p>
+    </div>
+{% endblock %}
